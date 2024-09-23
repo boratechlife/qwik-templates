@@ -4,7 +4,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 export default component$(() => {
   return (
     <>
-      <div class="grid  grid-cols-4 mt-4">
+      {/* <div class="grid  grid-cols-4 mt-4">
         <div class="h-[204px] relative ltr align-top">
           <div class="text-[#4d4d4d] w-full border border-transparent opacity-100 px-2 pt-2 pb-0 bg-[#e3e8eb] shadow-none box-border min-h-full border-[#e3e8eb] rounded-lg">
             <div class="flex flex-col relative text-[10px] px-2">
@@ -211,7 +211,7 @@ export default component$(() => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 });

@@ -1,5 +1,6 @@
 import { $, component$, useSignal } from "@builder.io/qwik";
 import { Modal2 } from "./Modal";
+import { MaterialSymbolsCloseRounded } from "./Icons";
 
 export default component$(() => {
   const showModal = useSignal(false);
@@ -14,6 +15,16 @@ export default component$(() => {
     console.log("CV header", showModal.value);
   });
 
+  const closeContactModal = $(() => {
+    showContactModal.value = false;
+    console.log("CV header", showContactModal.value);
+  });
+
+  const openContactModal = $(() => {
+    showContactModal.value = true;
+    console.log("CV header", showContactModal.value);
+  });
+
   return (
     <header class="w-full bg-header py-2.5">
       <div class="container mx-auto flex justify-between">
@@ -26,16 +37,14 @@ export default component$(() => {
             width={64}
           />
 
-          <div
-            class="relative h-7 w-7 rounded-full bg-gray-500 flex items-center justify-center"
-            onClick$={() => (showContactModal.value = true)}
-          >
+          <div class="relative h-7 w-7 rounded-full bg-gray-500 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
               height="32"
               class="h-5 w-5"
               viewBox="0 0 24 24"
+              onClick$={openContactModal}
             >
               <path
                 fill="#ffffff"
@@ -45,33 +54,267 @@ export default component$(() => {
 
             {showContactModal.value && (
               <Modal2>
-                <div
-                  class="h-[300px]  mr-10 mt-10 bg-white text-black w-80"
-                  onClick$={() => (showContactModal.value = false)}
-                >
-                  The card here
+                <div class="relative bg-[#f9f9f9] rounded-lg px-2 pt-3 mt-16 ml-20 shadow-[0_4px_20px_rgba(0,0,0,0.1)] w-[296px]  h-auto box-border text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
                   <button
-                    class="close"
-                    onClick$={() => (showContactModal.value = false)}
+                    class="close absolute z-50 right-2 top-3"
+                    onClick$={closeContactModal}
                   >
-                    Close
+                    <MaterialSymbolsCloseRounded class="h-5 w-5" />
                   </button>
+                  <div class="   text-black w-full relative max-w-full px-4 pb-6 box-border">
+                    <div class="text-[#1e313a] text-[18px] leading-[27px] font-semibold mb-6">
+                      Contact Form
+                    </div>
+
+                    <div class="my-4 mt-4 mb-2 text-[rgba(42,63,76,0.5)] uppercase">
+                      Name
+                    </div>
+                    <input class="border border-[#eaeaea] rounded box-border h-8 w-full px-2 outline-none transition duration-500 flex items-center text-[12px] font-semibold text-[#4a4a4a] appearance-none" />
+
+                    <div class="my-4 mt-4 mb-2 text-[rgba(42,63,76,0.5)] uppercase">
+                      Email
+                    </div>
+                    <input class="border border-[#eaeaea] rounded box-border h-8 w-full px-2 outline-none transition duration-500 flex items-center text-[12px] font-semibold text-[#4a4a4a] appearance-none" />
+
+                    <div class="my-4 mt-4 mb-2 text-[rgba(42,63,76,0.5)] uppercase">
+                      Message
+                    </div>
+                    <textarea class="border h-[80px] border-[#eaeaea] rounded box-border  w-full px-2 outline-none transition duration-500 flex items-center text-[12px] font-semibold text-[#4a4a4a] appearance-none"></textarea>
+
+                    <button class="w-full h-10 border-none text-white text-[14px] font-semibold uppercase rounded-full bg-[#0821ff] transition duration-500 outline-none mt-[16px]">
+                      SEND A MESSAGE
+                    </button>
+                  </div>
                 </div>
               </Modal2>
             )}
           </div>
         </div>
         <div class="language selector">
-          <div onClick$={() => openModal()} class="bg-white">
-            Select Lang
+          <div
+            class="ml-4 flex items-center h-8 bg-[#2a3f4c] rounded-full px-2 pr-[10px] text-[12px] leading-4 font-semibold text-white cursor-pointer"
+            onClick$={() => openModal()}
+          >
+            <img
+              data-v-3cbba768=""
+              src="https://demo.betby.games/static/flags/en.svg"
+              alt="ENGLISH"
+              height="24"
+              width="24"
+              class="header-lang__img mr-2 rounded-full overflow-hidden"
+            />
+            <span data-v-3cbba768="">en</span>
           </div>
+
           {showModal.value && (
             <Modal2>
-              <div class="h-[300px] float-right mr-10 mt-10 bg-white text-black w-80">
-                The card here
-                <button class="close" onClick$={closeModal}>
-                  Close
+              <div class="relative bg-[#f9f9f9] rounded-lg px-2 pt-4 shadow-[0_4px_20px_rgba(0,0,0,0.1)] w-auto h-auto box-border text-[12px] font-semibold leading-6 float-right mr-10 mt-10 text-[#4a4a4a] whitespace-normal">
+                <button
+                  class="close absolute  right-2 top-3"
+                  onClick$={closeModal}
+                >
+                  <MaterialSymbolsCloseRounded class="h-5 w-5" />
                 </button>
+                <div class="  w-[240px]">
+                  <div class="text-[#1e313a] text-[18px] leading-[27px] font-semibold mb-6">
+                    Contact Form
+                  </div>
+                  <div class="overflow-y-auto max-h-[320px]">
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                    <div class="flex justify-start items-center px-4 mb-2 w-inherit">
+                      <div class="w-8 h-8 rounded-full overflow-hidden bg-white flex justify-center items-center mr-2 border-2 border-transparent shadow-[0_2px_5px_1px_rgba(0,0,0,0.05)]">
+                        <img
+                          data-v-67f83f45=""
+                          data-v-3d797d4c=""
+                          height="24"
+                          width="24"
+                          class="w-6 h-6 rounded-full"
+                          src="https://demo.betby.games/static/flags/en.svg"
+                          alt="ENGLISH"
+                        />
+                      </div>
+                      <div class="text-[12px] font-semibold leading-6 text-[#4a4a4a] whitespace-normal">
+                        English
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </Modal2>
           )}

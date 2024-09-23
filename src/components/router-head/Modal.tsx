@@ -39,7 +39,10 @@ export const Modal = component$((props: ModalProps) => {
 
 export const Modal2 = component$(() => {
   return (
-    <div class="fixed top-0 inset-0 h-full bg-opacity-50  w-full bottom-0 bg-black ">
+    <div
+      class="fixed top-0 inset-0 h-full bg-opacity-50 z-50 w-full bottom-0 bg-black "
+      id={`"${Math.random()}"`}
+    >
       <Slot />
     </div>
   );
