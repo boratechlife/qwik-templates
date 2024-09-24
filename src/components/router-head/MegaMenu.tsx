@@ -35,9 +35,20 @@ export default component$(() => {
           onClick$={() => (showMegaMenu.value = false)}
         >
           <div
-            class="w-full rounded-xl bg-white  h-80 flex flex-col"
+            class="text-[#4d4d4d] w-full flex p-4 pr-2 relative bg-white shadow-lg box-border items-center font-normal border border-[#f9fafb] rounded-xl flex-col h-80"
             onClick$={(e) => e.stopPropagation()}
-          ></div>
+          >
+            <div class="bt1081 bt1078">
+              <div class="bt1085" data-editor-id="expandedNavbarTabs">
+                <div data-editor-id="expandedNavbarTab" class="bt1086 bt1087">
+                  <span>Sports</span>
+                </div>
+                <div data-editor-id="expandedNavbarTab" class="bt1086">
+                  <span>Esports</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

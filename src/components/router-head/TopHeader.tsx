@@ -6,10 +6,10 @@ import { MaterialSymbolsLiveIcon } from "./Icons";
 
 export default component$(() => {
   return (
-    <header class="py-2.5 bg-gray-200">
+    <header class=" w-full h-16 flex p-2 sticky top-16 bg-white shadow-md box-border items-center justify-between z-20">
       <div class="container mx-auto ">
         <div class="w-full flex ">
-          <div class="w-56 bg-red-500 flex gap-2 items-center">
+          <div class="w-56 pb-2 flex gap-2 items-center">
             <MenuItem text="Home">
               <svg
                 data-cy="ic-live"
@@ -26,14 +26,14 @@ export default component$(() => {
                 ></path>
               </svg>
             </MenuItem>
-            <MenuItem text="Home">
-              <MaterialSymbolsLiveIcon />
+            <MenuItem text="Home" isLive={true}>
+              <MaterialSymbolsLiveIcon style="fill: currentcolor; color: inherit; width: auto; height: 32px;" />
             </MenuItem>
             <MenuItem text="Home">
-              <MaterialSymbolsLiveIcon />
+              <MaterialSymbolsLiveIcon style="fill: currentcolor; color: inherit; width: auto; height: 32px;" />
             </MenuItem>
-            <MenuItem text="Home">
-              <MaterialSymbolsLiveIcon />
+            <MenuItem text="Home" isLive={true}>
+              <MaterialSymbolsLiveIcon style="fill: currentcolor; color: inherit; width: auto; height: 32px;" />
             </MenuItem>
           </div>
 
