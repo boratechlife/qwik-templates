@@ -1,8 +1,8 @@
-import { component$ } from "@builder.io/qwik";
-import MenuItem from "./MenuItem";
-import MegaMenu from "./MegaMenu";
-import MultiLevelTag from "./MultiLevelTag";
-import { MaterialSymbolsLiveIcon } from "./Icons";
+import { component$ } from '@builder.io/qwik';
+import MenuItem from './MenuItem';
+import MegaMenu from './MegaMenu';
+import MultiLevelTag from './MultiLevelTag';
+import { MaterialSymbolsLiveIcon } from './Icons';
 
 export default component$(() => {
   return (
@@ -39,11 +39,6 @@ export default component$(() => {
 
           <MegaMenu />
         </div>
-        {/* <div class="w-full flex">
-          <div class="w-max">
-            <MultiLevelTag />
-          </div>
-        </div> */}
       </div>
     </header>
   );
