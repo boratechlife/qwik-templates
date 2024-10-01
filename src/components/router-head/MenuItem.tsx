@@ -42,7 +42,7 @@ export default component$<IconWithTextProps>(({ text, isLive = false }) => {
         </div>
 
         {/* Tooltip with text prop */}
-        <div class="absolute -bottom-8 -left-4 shadow-md  hidden group-hover:block text-sm px-2 py-1 rounded bg-white">
+        <div class="absolute -bottom-8 -left-4 shadow-md  hidden group-hover:block text-sm px-2 py-1 w-max rounded bg-white">
           {text}
         </div>
       </div>
