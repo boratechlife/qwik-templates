@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { GameCard } from "~/components/router-head/GameCard";
 
 export default component$(() => {
   return (
@@ -137,6 +138,14 @@ export default component$(() => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="w-full flex justify-between">
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
+          <GameCard />
         </div>
       </div>
     </>
