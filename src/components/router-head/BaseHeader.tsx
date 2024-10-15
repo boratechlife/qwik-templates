@@ -2,6 +2,9 @@ import { $, component$, useSignal } from "@builder.io/qwik";
 import { Modal2 } from "./Modal";
 import { MaterialSymbolsCloseRounded } from "./Icons";
 
+import ImgBetbyLogo from "~/media/betby-logo.svg?jsx";
+import ImgLangEn from "~/media/en.svg?jsx";
+
 export default component$(() => {
   const showModal = useSignal(false);
   const showContactModal = useSignal(false);
@@ -29,13 +32,7 @@ export default component$(() => {
     <header class="w-full bg-header py-2.5">
       <div class="container mx-auto flex justify-between">
         <div class="logo flex">
-          <img
-            src="https://demo.betby.games/static/betby-games-logo.svg"
-            alt="Logo"
-            height={40}
-            class="w-full"
-            width={64}
-          />
+          <ImgBetbyLogo />
 
           <div class="relative h-7 w-7 rounded-full bg-gray-500 flex items-center justify-center">
             <svg
@@ -92,17 +89,11 @@ export default component$(() => {
         </div>
         <div class="language selector">
           <div
-            class="ml-4 flex items-center h-8 bg-[#2a3f4c] rounded-full px-2 pr-[10px] text-[12px] leading-4 font-semibold text-white cursor-pointer"
+            class="ml-4 flex items-center h-8 bg-[#2a3f4c] rounded-full px-2 pr-[10px] text-[12px]  leading-4 font-semibold text-white cursor-pointer"
             onClick$={() => openModal()}
           >
-            <img
-              data-v-3cbba768=""
-              src="https://demo.betby.games/static/flags/en.svg"
-              alt="ENGLISH"
-              height="24"
-              width="24"
-              class="header-lang__img mr-2 rounded-full overflow-hidden"
-            />
+            <ImgLangEn class="rounded-full mr-2" />
+
             <span data-v-3cbba768="">en</span>
           </div>
 

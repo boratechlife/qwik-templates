@@ -1,11 +1,13 @@
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal } from "@builder.io/qwik";
 
 export const CardComponent = component$(() => {
   const isDropDownVisible = useSignal(false);
 
   return (
-    <div class="h-[204px] relative ltr align-top">
-      <div class="text-[#4d4d4d] w-full border border-transparent opacity-100 px-2 pt-2 pb-0 bg-[#e3e8eb] shadow-none box-border min-h-full border-[#e3e8eb] rounded-lg">
+    <div
+      class={`${isDropDownVisible.value ? "h-auto" : "h-[204px]"} relative ltralign-top`}
+    >
+      <div class="text-[#4d4d4d] w-full border border-transparent opacity-100 px-2 pt-2 pb-2 bg-[#e3e8eb] shadow-none box-border min-h-full border-[#e3e8eb] rounded-lg">
         <div class="flex flex-col relative text-[10px] px-2">
           <div class="flex-1 text-[#4d4d4d] h-4 flex overflow-hidden relative text-xs box-border text-left break-all leading-4">
             <div class="bt2593 bt3172 bt2584 w-full leading-4 text-[rgba(77,77,77,0.5)]  flex text-xs items-center font-semibold antialiased">
@@ -222,7 +224,7 @@ export const CardComponent = component$(() => {
 
           {
             <div
-              class={`${isDropDownVisible.value ? 'h-max' : 'h-0'} w-full overflow-hidden transition-all duration-300 flex flex-col`}
+              class={`${isDropDownVisible.value ? "h-max" : "h-0"} w-full overflow-hidden transition-all duration-300 flex flex-col`}
             >
               <div class="w-full pb-6">
                 <div class="bt2815 relative mt-2">

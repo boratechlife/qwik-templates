@@ -1,8 +1,8 @@
-import { component$, QwikIntrinsicElements, useSignal } from '@builder.io/qwik';
-import { NavbarItem } from './NavbarItem';
+import { component$, QwikIntrinsicElements, useSignal } from "@builder.io/qwik";
+import { NavbarItem } from "./NavbarItem";
 
 export function MaterialSymbolsArrowDropDownRounded(
-  props: QwikIntrinsicElements['svg'],
+  props: QwikIntrinsicElements["svg"],
   key: string
 ) {
   return (
@@ -25,14 +25,14 @@ export function MaterialSymbolsArrowDropDownRounded(
 export default component$(() => {
   const showMegaMenu = useSignal(false);
   return (
-    <div class=" mx-auto group relative">
+    <div class=" mx-auto group w-full relative">
       <MaterialSymbolsArrowDropDownRounded
         class="h-8 w-8"
         onClick$={() => (showMegaMenu.value = !showMegaMenu.value)}
       />
       {showMegaMenu.value && (
         <div
-          class="fixed top-[120px] left-0 bg-black min-h-screen w-screen bg-opacity-50 p-4"
+          class="fixed lg:top-[120px] left-0 bg-black min-h-screen w-screen bg-opacity-50 p-4"
           onClick$={() => (showMegaMenu.value = false)}
         >
           <div
