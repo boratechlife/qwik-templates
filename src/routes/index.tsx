@@ -45,6 +45,10 @@ export default component$(() => {
           <CardComponent />
           <CardComponent />
           <CardComponent />
+          <CardComponent />
+          <CardComponent />
+          <CardComponent />
+          <CardComponent />
         </div>
       </div>
     </>
