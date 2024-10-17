@@ -1,5 +1,7 @@
-import { component$, useSignal } from "@builder.io/qwik";
-import { Icon } from "./SvgIcons";
+import { $, component$, useContext, useSignal } from '@builder.io/qwik';
+import { Icon } from './SvgIcons';
+import { useContent } from '@builder.io/qwik-city';
+import { Bet, ThemeContext } from '~/store/my-context';
 
 interface CardProps {
   title: string;
@@ -8,22 +10,40 @@ interface CardProps {
   eventImageUrl: string;
   odds: Array<{
     name: string;
-    value: number;
+    odds: Array<{ teamName: string; number: number }>;
   }>;
 }
 
 export const CardComponent = component$((props: CardProps) => {
   const isDropDownVisible = useSignal(false);
+  const { betCount, isBetSlipOpen, placeBet, betsPlaced, toggleSlip } =
+    useContext(ThemeContext);
+
+  // Example function to add a new bet
+  const handlePlaceBet = $(() => {
+    const newBet: Bet = {
+      id: crypto.randomUUID(),
+      player: 'Player 1',
+      match: 'Match A vs Match B',
+      type: 'Win',
+      odds: 1.5,
+      stake: 100,
+    };
+
+    betsPlaced.value = [newBet];
+
+    console.log('betsPlaced.value', betsPlaced.value);
+  });
 
   return (
     <div
       class={`${
-        isDropDownVisible.value ? "h-[204px]" : "h-[204px]"
+        isDropDownVisible.value ? 'h-[204px]' : 'h-[204px]'
       } relative ltralign-top`}
     >
       <div
         class={`text-[#4d4d4d] w-full border border-transparent opacity-100  pt-2 pb-2 bg-[#e3e8eb] shadow-none box-border  border-[#e3e8eb] ${
-          !isDropDownVisible.value ? "rounded-t-lg" : "rounded-b-none"
+          !isDropDownVisible.value ? 'rounded-t-lg' : 'rounded-b-none'
         }`}
       >
         <div class="flex flex-col relative text-[10px] px-2">
@@ -116,7 +136,10 @@ export const CardComponent = component$((props: CardProps) => {
             <div class="flex-1 relative mt-2">
               <div class="w-[calc(100%+8px)] -m-1 flex flex-wrap">
                 <div class="flex-grow-0 max-w-[50%] basis-1/2 p-1 box-border font-semibold">
-                  <div class="text-[#4d4d4d] border border-[#f9fafb] cursor-pointer h-10 flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] rounded-lg justify-between">
+                  <div
+                    onClick$={handlePlaceBet}
+                    class="text-[#4d4d4d] border border-[#f9fafb] cursor-pointer h-10 flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] rounded-lg justify-between"
+                  >
                     <div
                       class="bt2893 flex-1 text-[rgba(77,77,77,0.5)] flex text-xs mask-image-[linear-gradient(90deg,rgba(0,0,0,1)80%,rgba(0,0,0,0)100%)] transition-colors duration-100 ease-in-out items-center leading-[1.2] pr-1"
                       data-editor-id="outcomePlateName"
@@ -143,52 +166,68 @@ export const CardComponent = component$((props: CardProps) => {
           <div
             class={`${
               isDropDownVisible.value
-                ? "h-max absolute p-2 left-0 w-full right-0 top-full z-50 bg-[#e3e8eb] "
-                : "h-0"
+                ? 'h-max absolute p-2 left-0 w-full right-0 top-full z-50 bg-[#e3e8eb] '
+                : 'h-0'
             } w-full overflow-hidden transition-all duration-300 flex flex-col`}
           >
             <div class="w-full pb-6">
-              <div class="bt2815 relative mt-2">
-                <div
-                  class="bt2609 bt2610 bt2818 text-[#4d4d4d] m-0 z-4 relative box-border font-semibold mt-4 text-left pl-2 mb-2"
-                  data-editor-id="simpleMarketTitle"
-                  style="width: auto;"
-                >
+              {props.odds.map((item) => (
+                <div class="bt2815 relative mt-2">
                   <div
-                    class="bt2611 w-full h-4 opacity-50 overflow-hidden text-xs box-border leading-4 rounded-sm"
-                    style="mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);"
+                    class="bt2609 bt2610 bt2818 text-[#4d4d4d] m-0 z-4 relative box-border font-semibold mt-4 text-left pl-2 mb-2"
+                    data-editor-id="simpleMarketTitle"
+                    style="width: auto;"
                   >
-                    Double chance
-                  </div>
-                </div>
-                <div
-                  class="flex flex-wrap"
-                  style="width: calc(100% + 8px); margin: -4px;"
-                >
-                  {props.odds.map((odd) => (
                     <div
-                      data-editor-id="outcomePlate"
-                      class="bt2819 bt2822 p-1 box-border font-semibold flex-grow-0 max-w-1/3 basis-1/3"
+                      class="bt2611 w-full h-4 opacity-50 overflow-hidden text-xs box-border leading-4 rounded-sm"
+                      style="mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);"
                     >
-                      <div class="bt2823 bt2602 text-[#4d4d4d] border cursor-pointer flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] border-[#f9fafb] rounded-lg justify-between h-10">
-                        <div class="bt2838 top-0 left-0 w-full h-full absolute"></div>
-                        <div
-                          class="bt2827 flex-1 text-[rgba(77,77,77,0.5)] flex text-xs transition-colors duration-100 ease-in-out items-center leading-[1.2] pr-1"
-                          style="mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);"
-                          data-editor-id="outcomePlateName"
-                        >
-                          <span class="bt2829 h-[1.2em] flex overflow-hidden flex-col flex-none text-xs self-center text-right leading-[1.2]">
-                            {odd.name}
-                          </span>
-                        </div>
-                        <div class="bt2593 bt2830 bt2594 h-[1.2em] flex overflow-hidden flex-col flex-none text-xs self-center text-right leading-[1.2]">
-                          <span class="bt2595">{odd.value}</span>
+                      {item.name}
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap"
+                    style="width: calc(100% + 8px); margin: -4px;"
+                  >
+                    {/* {item.odds.map((odd) => (
+                      <div
+                        data-editor-id="outcomePlate"
+                        class="bt2819 bt2822 p-1 box-border font-semibold flex-grow-0 max-w-1/3 basis-1/3"
+                      >
+                        <div class="bt2823 bt2602 text-[#4d4d4d] border cursor-pointer flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] border-[#f9fafb] rounded-lg justify-between h-10">
+                          <div class="bt2838 top-0 left-0 w-full h-full absolute"></div>
+                          <div
+                            class="bt2827 flex-1 text-[rgba(77,77,77,0.5)] flex text-xs transition-colors duration-100 ease-in-out items-center leading-[1.2] pr-1"
+                            style="mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);"
+                            data-editor-id="outcomePlateName"
+                          >
+                            <span class="bt2829 h-[1.2em] flex overflow-hidden flex-col flex-none text-xs self-center text-right leading-[1.2]">
+                              {odd.teamName}
+                            </span>
+                          </div>
+                          <div class="bt2593 bt2830 bt2594 h-[1.2em] flex overflow-hidden flex-col flex-none text-xs self-center text-right leading-[1.2]">
+                            <span class="bt2595">{odd.number}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))} */}
+
+                    {item.odds.map((oddItem, oddIndex) => (
+                      <div
+                        key={oddIndex + 'items'}
+                        class="flex-grow-0 max-w-[50%] basis-1/2 p-1"
+                      >
+                        <div class="text-[#4d4d4d] border items-center border-[#f9fafb] cursor-pointer h-10 flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] rounded-lg justify-between">
+                          <span class="flex-1 text-xs">{oddItem.teamName}</span>
+                          <span class="bt2637 bt2896 flex-none text-xs self-center text-right leading-[1.2]">
+                            {oddItem.number}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

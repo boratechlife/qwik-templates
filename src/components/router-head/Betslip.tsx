@@ -1,21 +1,27 @@
-import { component$, useSignal } from "@builder.io/qwik";
-import { BetSlipItem } from "./BetSlipItem";
+import { component$, useContext, useSignal } from '@builder.io/qwik';
+import { BetSlipItem } from './BetSlipItem';
+import { ThemeContext } from '~/store/my-context';
 
 export default component$(() => {
-  const isOpen = useSignal(false);
+  const { betCount, isBetSlipOpen, placeBet, betsPlaced, toggleSlip } =
+    useContext(ThemeContext);
+  const isOpen = useSignal(true);
+  console.log('isBetSlipOpen', isOpen.value, betsPlaced.value);
   return (
-    <div class="left-0 right-0 bottom-0 h-full fixed pointer-events-none spt-bet-slip">
+    <div
+      class={`left-0  right-0 ${isOpen.value ? 'bottom-[0%]' : '-bottom-10'} h-full fixed pointer-events-none spt-bet-slip`}
+    >
       <div class="box-border break-keep bt618 bt627 tap-highlight-transparent top-0 left-0 right-0 overflow-hidden absolute bottom-0">
         <div class="box-border break-keep tap-highlight-transparent w-[320px] bottom-[-120px] m-0 mx-[4px] absolute right-0 bt620 bt628">
           <div
-            class={`transition-all duration-300 ease-in-out opacity-100 translate-y-0 box-border break-keep tap-highlight-transparent left-0 right-0 ${isOpen.value ? "bottom-[120px]" : "bottom-[-40px]"}  absolute bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] text-shadow-none rounded-t-[6px] pointer-events-auto z-[101]`}
+            class={`transition-all duration-300 ease-in-out opacity-100 translate-y-0 box-border break-keep tap-highlight-transparent left-0 right-0 bottom-0 absolute bg-white shadow-[0_4px_10px_rgba(0,0,0,0.1)] text-shadow-none rounded-t-[6px] pointer-events-auto z-[101]`}
           >
             <div class="transition-all bt648 bt652 duration-300 ease-in-out translate-y-0 box-border break-keep tap-highlight-transparent">
               <div class="transition-[height] duration-300 ease-in-out will-change-[height] box-border break-keep tap-highlight-transparent h-auto bt655">
                 <div
                   class="bt659 text-white cursor-pointer h-[56px] flex px-[16px] z-[1] relative bg-[#0B4DF7] box-border items-center rounded-t-[6px] justify-between"
                   data-editor-id="betslipHeader"
-                  onClick$={() => (isOpen.value = !isOpen.value)}
+                  onClick$={toggleSlip}
                 >
                   <div class="bt661 flex-1 flex text-[16px] min-w-0 items-center font-semibold">
                     <div class="bt662 w-[32px] h-[32px] mr-[8px]">
@@ -35,7 +41,7 @@ export default component$(() => {
                       </svg>
                     </div>
                     <span class="bt656 overflow-hidden text-[16px] !important mr-[4px] text-ellipsis">
-                      Betslip
+                      Betslip {isOpen.value}
                     </span>
                     <svg
                       class="bt657 fill-current flex-none w-[16px] cursor-pointer h-[16px] opacity-50 ml-[4px]"
@@ -80,16 +86,15 @@ export default component$(() => {
                 </div>
 
                 <div
-                  class="bt677 overflow-hidden relative"
-                  style="max-height: 735px;"
+                  class="bt677 overflow-y-auto relative"
+                  style="max-height: 635px;"
                 >
                   <div>
                     <div class="bt685 flex  flex-col">
-                      <div
-                        class="bt686 flex z-[3] overflow-auto flex-col overscroll-contain scroll-touch"
-                        style="max-height: 695px;"
-                      >
-                        <div class="bt716 bt687  bt700 bt689 bt702 flex overflow-hidden flex-col min-h-[162px] max-h-[162px]">
+                      <div class="bt686 flex z-[3] overflow-auto flex-col overscroll-contain scroll-touch">
+                        <div
+                          class={`bt716 bt687  bt700 bt689 bt702 flex overflow-hidden flex-col min-h-[162px] ${isOpen.value ? 'h-[50px]' : 'h-[50px]'}overflow-y-auto `}
+                        >
                           {/* CONTENT  WITH  BETS*/}
                           {/* TABS */}
                           <div
@@ -118,7 +123,13 @@ export default component$(() => {
 
                           {/* THE  CONTENT */}
                           <div class="flex flex-col gap-4">
-                            <BetSlipItem />
+                            {betsPlaced.value.length == 0 ? (
+                              <p>No bets placed yet.</p>
+                            ) : (
+                              betsPlaced.value.map((bet) => <div>Halllow</div>)
+                            )}
+
+                            <div class="w-full h-12"></div>
                           </div>
 
                           <div class=""></div>
