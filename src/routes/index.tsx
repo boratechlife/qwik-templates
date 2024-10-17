@@ -41,14 +41,75 @@ export default component$(() => {
         </div>
 
         <div class="grid grid-cols-1  lg:grid-cols-4 mt-4 gap-4">
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
-          <CardComponent />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
+          <CardComponent
+            title="Injustice 2"
+            status="Started"
+            score={1}
+            eventImageUrl="https://d1bvoel1nv172p.cloudfront.net/blurred_images/medium/2376409257651351552.png"
+            odds={[
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+              { name: "Paris Saint-Germain (Leyla) or draw", value: 1.65 },
+              { name: "Manchester City (John) to win", value: 2.1 },
+              { name: "Liverpool (Chris) or draw", value: 1.9 },
+            ]}
+          />
         </div>
       </div>
     </>
