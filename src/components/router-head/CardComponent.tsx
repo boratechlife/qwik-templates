@@ -1,7 +1,7 @@
-import { $, component$, useContext, useSignal } from '@builder.io/qwik';
-import { Icon } from './SvgIcons';
-import { useContent } from '@builder.io/qwik-city';
-import { Bet, ThemeContext } from '~/store/my-context';
+import { $, component$, useContext, useSignal } from "@builder.io/qwik";
+import { Icon } from "./SvgIcons";
+import { useContent } from "@builder.io/qwik-city";
+import { Bet, ThemeContext } from "~/store/my-context";
 
 interface CardProps {
   title: string;
@@ -16,34 +16,33 @@ interface CardProps {
 
 export const CardComponent = component$((props: CardProps) => {
   const isDropDownVisible = useSignal(false);
-  const { betCount, isBetSlipOpen, placeBet, betsPlaced, toggleSlip } =
-    useContext(ThemeContext);
+  const todos = useContext(ThemeContext);
 
   // Example function to add a new bet
   const handlePlaceBet = $(() => {
     const newBet: Bet = {
       id: crypto.randomUUID(),
-      player: 'Player 1',
-      match: 'Match A vs Match B',
-      type: 'Win',
+      player: "Player 1",
+      match: "Match A vs Match B",
+      type: "Win",
       odds: 1.5,
       stake: 100,
     };
 
-    betsPlaced.value = [newBet];
+    todos.betsPlaced.push(newBet);
 
-    console.log('betsPlaced.value', betsPlaced.value);
+    console.log("betsPlaced.value", todos.betsPlaced);
   });
 
   return (
     <div
       class={`${
-        isDropDownVisible.value ? 'h-[204px]' : 'h-[204px]'
+        isDropDownVisible.value ? "h-[204px]" : "h-[204px]"
       } relative ltralign-top`}
     >
       <div
         class={`text-[#4d4d4d] w-full border border-transparent opacity-100  pt-2 pb-2 bg-[#e3e8eb] shadow-none box-border  border-[#e3e8eb] ${
-          !isDropDownVisible.value ? 'rounded-t-lg' : 'rounded-b-none'
+          !isDropDownVisible.value ? "rounded-t-lg" : "rounded-b-none"
         }`}
       >
         <div class="flex flex-col relative text-[10px] px-2">
@@ -166,8 +165,8 @@ export const CardComponent = component$((props: CardProps) => {
           <div
             class={`${
               isDropDownVisible.value
-                ? 'h-max absolute p-2 left-0 w-full right-0 top-full z-50 bg-[#e3e8eb] '
-                : 'h-0'
+                ? "h-max absolute p-2 left-0 w-full right-0 top-full z-50 bg-[#e3e8eb] "
+                : "h-0"
             } w-full overflow-hidden transition-all duration-300 flex flex-col`}
           >
             <div class="w-full pb-6">
@@ -214,7 +213,7 @@ export const CardComponent = component$((props: CardProps) => {
 
                     {item.odds.map((oddItem, oddIndex) => (
                       <div
-                        key={oddIndex + 'items'}
+                        key={oddIndex + "items"}
                         class="flex-grow-0 max-w-[50%] basis-1/2 p-1"
                       >
                         <div class="text-[#4d4d4d] border items-center border-[#f9fafb] cursor-pointer h-10 flex px-2 overflow-hidden relative bg-[#f9fafb] box-border transition-all duration-200 ease-in-out font-semibold leading-[30px] rounded-lg justify-between">

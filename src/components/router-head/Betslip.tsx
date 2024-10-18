@@ -1,15 +1,18 @@
-import { component$, useContext, useSignal } from '@builder.io/qwik';
-import { BetSlipItem } from './BetSlipItem';
-import { ThemeContext } from '~/store/my-context';
+import { $, component$, useContext, useSignal } from "@builder.io/qwik";
+import { BetSlipItem } from "./BetSlipItem";
+import { ThemeContext } from "~/store/my-context";
 
 export default component$(() => {
-  const { betCount, isBetSlipOpen, placeBet, betsPlaced, toggleSlip } =
-    useContext(ThemeContext);
-  const isOpen = useSignal(true);
-  console.log('isBetSlipOpen', isOpen.value, betsPlaced.value);
+  const todos = useContext(ThemeContext);
+
+  console.log("isBetSlipOpen", todos.isBetOpen, todos.betsPlaced);
+
+  const toggleSlip = $(() => {
+    todos.isBetOpen = !todos.isBetOpen;
+  });
   return (
     <div
-      class={`left-0  right-0 ${isOpen.value ? 'bottom-[0%]' : '-bottom-10'} h-full fixed pointer-events-none spt-bet-slip`}
+      class={`left-0  right-0 ${todos.isBetOpen ? "bottom-[0%]" : "-bottom-10"} h-full fixed pointer-events-none spt-bet-slip`}
     >
       <div class="box-border break-keep bt618 bt627 tap-highlight-transparent top-0 left-0 right-0 overflow-hidden absolute bottom-0">
         <div class="box-border break-keep tap-highlight-transparent w-[320px] bottom-[-120px] m-0 mx-[4px] absolute right-0 bt620 bt628">
@@ -41,7 +44,7 @@ export default component$(() => {
                       </svg>
                     </div>
                     <span class="bt656 overflow-hidden text-[16px] !important mr-[4px] text-ellipsis">
-                      Betslip {isOpen.value}
+                      Betslip {todos.isBetOpen}
                     </span>
                     <svg
                       class="bt657 fill-current flex-none w-[16px] cursor-pointer h-[16px] opacity-50 ml-[4px]"
@@ -93,7 +96,7 @@ export default component$(() => {
                     <div class="bt685 flex  flex-col">
                       <div class="bt686 flex z-[3] overflow-auto flex-col overscroll-contain scroll-touch">
                         <div
-                          class={`bt716 bt687  bt700 bt689 bt702 flex overflow-hidden flex-col min-h-[162px] ${isOpen.value ? 'h-[50px]' : 'h-[50px]'}overflow-y-auto `}
+                          class={`bt716 bt687  bt700 bt689 bt702 flex overflow-hidden flex-col min-h-[162px] ${todos.isBetOpen ? "h-[50px]" : "h-[50px]"}overflow-y-auto `}
                         >
                           {/* CONTENT  WITH  BETS*/}
                           {/* TABS */}
@@ -123,11 +126,14 @@ export default component$(() => {
 
                           {/* THE  CONTENT */}
                           <div class="flex flex-col gap-4">
-                            {betsPlaced.value.length == 0 ? (
-                              <p>No bets placed yet.</p>
-                            ) : (
-                              betsPlaced.value.map((bet) => <div>Halllow</div>)
-                            )}
+                            {todos.betsPlaced.map((item, index) => {
+                              return (
+                                <BetSlipItem
+                                  key={index + "BETLSIPITEM"}
+                                  bet={item}
+                                />
+                              );
+                            })}
 
                             <div class="w-full h-12"></div>
                           </div>
