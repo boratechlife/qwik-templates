@@ -30,6 +30,7 @@ export const CardComponent = component$((props: CardProps) => {
     };
 
     todos.betsPlaced.push(newBet);
+    todos.isBetOpen = true;
 
     console.log("betsPlaced.value", todos.betsPlaced);
   });

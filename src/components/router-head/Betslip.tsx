@@ -126,14 +126,15 @@ export default component$(() => {
 
                           {/* THE  CONTENT */}
                           <div class="flex flex-col gap-4">
-                            {todos.betsPlaced.map((item, index) => {
-                              return (
-                                <BetSlipItem
-                                  key={index + "BETLSIPITEM"}
-                                  bet={item}
-                                />
-                              );
-                            })}
+                            {todos.isBetOpen &&
+                              todos.betsPlaced.map((item, index) => {
+                                return (
+                                  <BetSlipItem
+                                    key={index + "BETLSIPITEM"}
+                                    bet={item}
+                                  />
+                                );
+                              })}
 
                             <div class="w-full h-12"></div>
                           </div>
